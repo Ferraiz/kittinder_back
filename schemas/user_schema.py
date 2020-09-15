@@ -3,7 +3,7 @@ from marshmallow import Schema, fields
 
 def must_not_be_blank(data):
     if not data:
-        raise ValidationError('Data not provided.')
+        raise ValidationError('Data not provided')
 
 
 class UserSchema(Schema):

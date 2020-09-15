@@ -10,7 +10,12 @@ user_schema = UserSchema()
 
 class User(Resource):
     def post(self):
-        response = post_user()
+        json_data = request.get_json()
+        try:
+            data = user_schema.load(json_data)
+        except:
+            return Response({'Bad request'}, 400)
+        response = post_user(data)
         return response
 
     # def get(self):
