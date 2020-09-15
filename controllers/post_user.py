@@ -6,7 +6,7 @@ from schemas.user_schema import UserSchema
 user_schema = UserSchema()
 
 
-def post_user(email):
+def post_user():
     if UserModel.find_by_email(email):
         response = Response('Email already exists', 409)
     json_data = request.get_json()
