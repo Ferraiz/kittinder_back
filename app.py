@@ -12,6 +12,12 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 migrate = Migrate(app, db)
 api = Api(app)
 
+
+@app.before_first_request
+def create_tables():
+    db.create_all()
+
+
 api.add_resource(Info, '/info')
 api.add_resource(User, '/user')
 
