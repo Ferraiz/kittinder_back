@@ -14,7 +14,7 @@ class User(Resource):
         try:
             data = user_schema.load(json_data)
         except:
-            return Response({'Bad request'}, 400)
+            return Response('Bad request', 400)
         response = post_user(data)
         return response
 
