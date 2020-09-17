@@ -5,7 +5,7 @@ from flask_restful import Resource, Api
 
 from db import db
 from resources.info_resources import Info
-from resources.user_resources import User, UserLogin
+from resources.user_resources import ChangeUser, CreateUser, UserLogin
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
@@ -22,7 +22,8 @@ def create_tables():
 
 
 api.add_resource(Info, '/info')
-api.add_resource(User, '/user')
+api.add_resource(CreateUser, '/user')
+api.add_resource(ChangeUser, '/user/<int:user_id>')
 api.add_resource(UserLogin, '/login')
 
 db.init_app(app)
