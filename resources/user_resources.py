@@ -24,8 +24,11 @@ class CreateUser(Resource):
 
 
 class ChangeUser(Resource):
+    @jwt_required
     def put(self, user_id):
+        # return Response(f'Muy logado, {user_id}')
         json_data = request.get_json()
+        print(json_data)
         try:
             data = user_schema.load(json_data)
         except:
