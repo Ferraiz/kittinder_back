@@ -26,7 +26,6 @@ class CreateUser(Resource):
 class ChangeUser(Resource):
     @jwt_required
     def put(self, user_id):
-        # return Response(f'Muy logado, {user_id}')
         json_data = request.get_json()
         print(json_data)
         try:
@@ -35,29 +34,6 @@ class ChangeUser(Resource):
             return Response('Bad request', 400)
         response = put_user(data, user_id)
         return response
-
-        # user = UserModel.find_by_id(user_id)  # Buscamos el user por id
-        # if user:  # Si existe ese user
-        #     # Comprobamos si existe ya un user con ese email
-        #     user_email = UserModel.find_by_email(data['email'])
-        #     if not user_email:  # El email está disponible: machacamos los datos
-        #         user.email = data['email']
-        #         user.password = data['password']
-        #     else:  # El email NO está disponible: devolvemos un error 409
-        #         response = Response('Email alrady exists', 409)
-        #         return response
-        # else:  # Si no existe ese user, devolvemos un error 404
-        #     response = Response('User not found', 404)
-        #     return response
-
-        # user.save()  # Guardo la información
-
-        # response = Response(f'{{email: {user.email}}}')
-        # return response
-
-        # def get(self):
-        #     response = get_user()
-        #     return response
 
 
 class UserLogin(Resource):
