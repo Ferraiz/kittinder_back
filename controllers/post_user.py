@@ -22,6 +22,3 @@ def post_user(user_data):
     response = Response(f'{{email: {user.email}}}')
     return response
 
-
-# def get_user():
-#     return 'user'
