@@ -1,7 +1,8 @@
-from flask import request, Response
+from flask import request
 from flask_jwt_extended import jwt_required
 from flask_restful import Resource
 
+from controllers.build_response import build_response
 from controllers.get_user import get_user
 from controllers.login_user import login_user
 from controllers.post_user import post_user
@@ -18,7 +19,7 @@ class CreateUser(Resource):
         try:
             data = user_schema.load(json_data)
         except:
-            return Response('Bad request', 400)
+            return build_response({'error message': 'Bad request'}, 400)
         response = post_user(data)
         return response
 
@@ -30,7 +31,7 @@ class UpdateUser(Resource):
         try:
             data = user_schema.load(json_data)
         except:
-            return Response('Bad request', 400)
+            return build_response({'error message': 'Bad request'}, 400)
         response = put_user(data, user_id)
         return response
 
@@ -48,6 +49,6 @@ class UserLogin(Resource):
         try:
             data = user_schema.load(json_data)
         except:
-            return Response('Bad request', 400)
+            return build_response({'error message': 'Bad request'}, 400)
         response = login_user(data)
         return response

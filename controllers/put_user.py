@@ -1,5 +1,4 @@
-from flask import Response
-
+from controllers.build_response import build_response
 from facades.user_validation import user_facade
 from models.user_model import UserModel
 
@@ -11,18 +10,19 @@ def put_user(user_data, user_id):
         user_email = UserModel.find_by_email(user_data['email'])
         if not user_email:  # Si el email está disponible: machacamos los datos
             if not user_facade.email_validation(user_data['email']):
-                response = Response('Email has an incorrect format', 400)
+                response = build_response(
+                    {'error message': 'Email has an incorrect format'}, 400)
                 return response
             user.email = user_data['email']
             user.password = user_data['password']
         else:  # El email NO está disponible: devolvemos un error 409
-            response = Response('Email alrady exists', 409)
+            response = build_response(
+                {'error message': 'Email alrady exists'}, 409)
             return response
     else:  # Si no existe ese user, devolvemos un error 404
-        response = Response('User not found', 404)
+        response = build_response({'error message': 'User not found'}, 404)
         return response
 
     user.save()  # Guardo la información
-
-    response = Response(f'{{email: {user.email}}}')
+    response = build_response({'email': f'{user.email}'})
     return response
