@@ -13,7 +13,7 @@ def post_kitty(kitty_data, user_id):
         return response
     if KittyModel.find_by_name(kitty_name):
         response = build_response(
-            {'error message': 'Kitty name already exists'}, 409)
+            {'error message': 'Name already exists'}, 409)
         return response
     kitty = KittyModel(kitty_name, kitty_photo, user_id)
     kitty.save()
