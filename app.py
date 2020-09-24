@@ -6,6 +6,7 @@ from flask_restful import Resource, Api
 from db import db
 from resources.info_resources import Info
 from resources.user_resources import CreateUser, UpdateUser, GetUser, UserLogin
+from resources.kitty_resources import PostKitty
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
@@ -25,6 +26,7 @@ api.add_resource(Info, '/info')
 api.add_resource(CreateUser, '/user')  # post
 api.add_resource(UpdateUser, '/user/<int:user_id>')  # put
 api.add_resource(GetUser, '/user/<string:user_email>')
+api.add_resource(PostKitty, '/user/<int:user_id>/kitty')
 api.add_resource(UserLogin, '/login')
 
 db.init_app(app)

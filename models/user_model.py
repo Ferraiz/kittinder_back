@@ -7,6 +7,7 @@ class UserModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(40))
     password = db.Column(db.String(40))
+    kitties = db.relationship('KittyModel', backref='user', lazy=True)
 
     def __init__(self, email, password):
         self.email = email

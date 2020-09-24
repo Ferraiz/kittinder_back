@@ -1,7 +1,7 @@
-from flask import Response
+from controllers.build_response import build_response
 
 
 def get_info():
     info = '{name: "Kittinder", version: "1.0"}'
-    response = Response(info)
+    response = build_response(info)
     return response
