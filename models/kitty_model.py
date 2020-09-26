@@ -26,3 +26,10 @@ class KittyModel(db.Model):
     @classmethod
     def find_by_id(cls, id):
         return cls.query.filter_by(id=id).first()
+
+    @classmethod
+    def find_by_user(cls, user_id):
+        return cls.query.filter_by(user_id=user_id).all()
+
+    def serialize_kitty(self):
+        return {'kitty id': self.id, 'kitty name': self.name, 'kitty photo': self.photo, 'kitty user': self.user_id}
