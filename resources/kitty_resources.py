@@ -4,7 +4,8 @@ from flask_restful import Resource
 
 from controllers.get_kitties import get_kitties
 from controllers.post_kitty import post_kitty
-from controllers.build_response import build_response
+from controllers.get_kitty import get_kitty_by_id
+from helpers.build_response import build_response
 from schemas.kitty_schema import KittySchema
 
 kitty_schema = KittySchema()
@@ -29,5 +30,13 @@ class GetKitties(Resource):
     def get(self, user_id):
         response = get_kitties(user_id)
         return response
+
+
+class GetKittyById(Resource):
+    @jwt_required
+    def get(self, user_id, kitty_id):
+        response = get_kitty_by_id(user_id, kitty_id)
+        return response
+
     # user/2/kitty/5
     # Gato 5 del usuario 2
