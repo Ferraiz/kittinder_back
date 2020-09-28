@@ -33,3 +33,7 @@ class KittyModel(db.Model):
 
     def serialize_kitty(self):
         return {'kitty id': self.id, 'kitty name': self.name, 'kitty photo': self.photo}
+
+    @classmethod
+    def get_all_kitties(cls):
+        return cls.query.all()

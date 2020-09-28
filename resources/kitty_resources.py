@@ -3,8 +3,9 @@ from flask_jwt_extended import jwt_required
 from flask_restful import Resource
 
 from controllers.get_kitties import get_kitties
+from controllers.get_kitty import get_kitty
 from controllers.post_kitty import post_kitty
-from controllers.get_kitty import get_kitty_by_id
+from controllers.get_kitty_by_id import get_kitty_by_id
 from helpers.build_response import build_response
 from schemas.kitty_schema import KittySchema
 
@@ -38,5 +39,9 @@ class GetKittyById(Resource):
         response = get_kitty_by_id(user_id, kitty_id)
         return response
 
-    # user/2/kitty/5
-    # Gato 5 del usuario 2
+
+class GetKitty(Resource):
+    @jwt_required
+    def get(self):
+        response = get_kitty()
+        return response

@@ -11,7 +11,7 @@ from models.user_model import UserModel
 
 def login_user(user_data):
     user_email = user_data['email']
-    expires = timedelta(seconds=int(os.environ.get('EXPIRE_TIME', '120')))
+    expires = timedelta(seconds=int(os.environ.get('EXPIRE_TIME', '1200')))
     user = UserModel.find_by_email(user_email)
     if user and safe_str_cmp(user.password, user_data['password']):
         access_token = create_access_token(

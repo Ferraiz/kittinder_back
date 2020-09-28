@@ -1,18 +1,34 @@
+import random
+
+from flask import request
+
 from helpers.build_response import build_response
-from helpers.get_user_kitties import get_user_kitties
+from helpers.random_names import random_names
 from models.kitty_model import KittyModel
-from models.user_model import UserModel
 
 
-def get_kitty_by_id(user_id, kitty_id):
-    kitties_from_db = get_user_kitties(user_id)
-    kitty_by_id = KittyModel.find_by_id(kitty_id)
-    if kitty_by_id.name not in kitties_from_db:
-        response = build_response(
-            {'error message': 'Kitty not found'}, 404)
-        return response
-    user = UserModel.find_by_id(user_id)
-    kitty_dict = kitty_by_id.serialize_kitty()
-    kitty_dict['user'] = {'id': f'{user_id}', 'email': f'{user.email}'}
-    response = build_response(kitty_dict)
+def get_kitty():
+    kitty_from_db = _get_random_kitty_from_db()
+    kitty_from_cataas = _get_random_kitty_from_cataas()
+    kitty = random.choice([kitty_from_db, kitty_from_cataas])
+    if not kitty:
+        kitty = _get_random_kitty_from_cataas()
+    response = build_response(kitty)
+    return response
+
+
+def _get_random_kitty_from_db():
+    kitties_from_db = KittyModel.get_all_kitties()
+    random_kitty = random.choice(kitties_from_db)
+    response = {'name': f'{random_kitty.name}',
+                'photo': f'{random_kitty.photo}'}
+    return response
+
+
+def _get_random_kitty_from_cataas():
+    url = 'https://cataas.com/cat'
+    random_kitty = request.url
+    random_kitty_name = random.choice(random_names)
+    response = {'name': f'{random_kitty_name}',
+                'url': f'{url}'}
     return response
