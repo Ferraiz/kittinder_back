@@ -33,7 +33,7 @@ class GetKitties(Resource):
 
 
 class GetKittyById(Resource):
-    # @jwt_required
+    @jwt_required
     def get(self, user_id, kitty_id):
         response = get_kitty_by_id(user_id, kitty_id)
         return response
