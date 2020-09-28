@@ -2,7 +2,7 @@ from datetime import timedelta
 import os
 
 
-from controllers.build_response import build_response
+from helpers.build_response import build_response
 from flask_jwt_extended import create_access_token, create_refresh_token
 from werkzeug.security import safe_str_cmp
 

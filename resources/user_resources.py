@@ -2,7 +2,7 @@ from flask import request
 from flask_jwt_extended import jwt_required
 from flask_restful import Resource
 
-from controllers.build_response import build_response
+from helpers.build_response import build_response
 from controllers.get_user import get_user
 from controllers.login_user import login_user
 from controllers.post_user import post_user

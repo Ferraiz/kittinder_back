@@ -1,4 +1,4 @@
-from controllers.build_response import build_response
+from helpers.build_response import build_response
 
 
 def must_not_be_blank(data):
