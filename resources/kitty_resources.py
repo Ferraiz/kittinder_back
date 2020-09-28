@@ -25,7 +25,7 @@ class PostKitty(Resource):
 
 
 class GetKitties(Resource):
-    # @jwt_required
+    @jwt_required
     def get(self, user_id):
         response = get_kitties(user_id)
         return response
