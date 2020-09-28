@@ -3,7 +3,6 @@ from helpers.get_user_kitties import get_user_kitties
 
 
 def get_kitties(user_id):
-    # ¿Debería comprobar si existe el usuario?
     kitties = get_user_kitties(user_id)
     if not kitties:
         response = build_response(
