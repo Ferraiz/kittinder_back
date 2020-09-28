@@ -30,3 +30,5 @@ curl -d '{"email":"jordi@mail.com", "password":"pujol"}' -H "Content-Type: appli
 ### Con token
 
 curl -H "Authorization: Bearer \$ACCESS" http://localhost:5000/protected
+
+https://stackoverflow.com/questions/4859292/how-to-get-a-random-value-from-dictionary-in-python
