@@ -7,6 +7,7 @@ from controllers.get_kitty import get_kitty
 from controllers.post_kitty import post_kitty
 from controllers.get_kitty_by_id import get_kitty_by_id
 from controllers.put_kitty import put_kitty
+from controllers.delete_kitty import delete_kitty
 from helpers.build_response import build_response
 from schemas.kitty_schema import KittySchema
 
@@ -57,4 +58,13 @@ class UpdateKitty(Resource):
         except:
             return build_response({'error message': 'Bad request'}, 400)
         response = put_kitty(data, user_id, kitty_id)
+        return response
+
+
+class DeleteKitty(Resource):
+    @jwt_required
+    def delete(self, user_id, kitty_id):
+        print(user_id)
+        print(kitty_id)
+        response = delete_kitty(user_id, kitty_id)
         return response
