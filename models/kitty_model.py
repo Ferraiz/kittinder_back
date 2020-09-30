@@ -37,3 +37,7 @@ class KittyModel(db.Model):
     @classmethod
     def get_all_kitties(cls):
         return cls.query.all()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
