@@ -18,5 +18,5 @@ def post_user(user_data):
         return response
     user = UserModel(user_email, user_password)
     user.save()
-    response = build_response({'email': f'{user.email}'})
+    response = build_response({'email': user.email})
     return response

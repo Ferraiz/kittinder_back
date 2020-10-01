@@ -13,6 +13,6 @@ def get_kitty_by_id(user_id, kitty_id):
         return response
     user = UserModel.find_by_id(user_id)
     kitty_dict = kitty_by_id.serialize_kitty()
-    kitty_dict['user'] = {'id': f'{user_id}', 'email': f'{user.email}'}
+    kitty_dict['user'] = {'id': user_id, 'email': user.email}
     response = build_response(kitty_dict)
     return response

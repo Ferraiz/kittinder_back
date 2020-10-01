@@ -18,5 +18,5 @@ def post_kitty(kitty_data, user_id):
     kitty = KittyModel(kitty_name, kitty_photo, user_id)
     kitty.save()
     response = build_response(
-        {'name': f'{kitty_name}', 'photo': f'{kitty_photo}'})
+        {'name': kitty_name, 'photo': kitty_photo})
     return response

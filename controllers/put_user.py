@@ -24,5 +24,5 @@ def put_user(user_data, user_id):
         return response
 
     user.save()  # Guardo la información
-    response = build_response({'email': f'{user.email}'})
+    response = build_response({'email': user.email})
     return response
