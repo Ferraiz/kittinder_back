@@ -1,12 +1,22 @@
 from helpers.build_response import build_response
 from helpers.get_user_kitties import get_user_kitties
 
+from models.kitty_model import KittyModel
+from models.user_model import UserModel
 
-def get_kitties(user_id):
-    kitties = get_user_kitties(user_id)
+
+def get_kitties(user_id, limit, page):
+    kitties = KittyModel.query.filter_by(
+        user_id=user_id).paginate(page=page, max_per_page=limit)
+    total = kitties.total
+    offset = ((page - 1) * limit)
     if not kitties:
         response = build_response(
             {'error message': 'This user has no kitties yet'}, 404)
         return response
-    response = build_response(kitties)
+    data = dict()
+    for kitty in kitties.items:
+        data[kitty.name] = kitty.serialize_kitty()
+    response = build_response(
+        {'offset': offset, 'limit': limit, 'total': total, 'data': data})
     return response

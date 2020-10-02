@@ -7,7 +7,8 @@ class UserModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(40))
     password = db.Column(db.String(40))
-    kitties = db.relationship('KittyModel', backref='user', lazy=True)
+    kitties = db.relationship(
+        'KittyModel', backref='user', lazy=True, uselist=False)
 
     def __init__(self, email, password):
         self.email = email
@@ -17,10 +18,10 @@ class UserModel(db.Model):
         db.session.add(self)
         db.session.commit()
 
-    @classmethod
+    @ classmethod
     def find_by_email(cls, email):
         return cls.query.filter_by(email=email).first()
 
-    @classmethod
+    @ classmethod
     def find_by_id(cls, id):
         return cls.query.filter_by(id=id).first()
