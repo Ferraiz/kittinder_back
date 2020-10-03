@@ -10,6 +10,8 @@ from resources.user_resources import (
 from resources.kitty_resources import (
     PostKitty, GetKitties, GetKittyById, GetKitty, UpdateKitty, DeleteKitty)
 
+from models.favourites_model import FavouritesModel
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -19,9 +21,9 @@ app.config['JWT_SECRET_KEY'] = 'marramiau'
 jwt = JWTManager(app)
 
 
-@app.before_first_request
-def create_tables():
-    db.create_all()
+# @app.before_first_request
+# def create_tables():
+#     db.create_all()
 
 
 api.add_resource(Info, '/info')
@@ -40,3 +42,4 @@ db.init_app(app)
 
 if __name__ == '__main__':
     app.run(debug=True)
+    db.create_all()

@@ -8,7 +8,9 @@ class UserModel(db.Model):
     email = db.Column(db.String(40))
     password = db.Column(db.String(40))
     kitties = db.relationship(
-        'KittyModel', backref='user', lazy=True, uselist=False)
+        'KittyModel', backref='owner', lazy=True)
+    favourites = db.relationship(
+        'FavouritesModel', backref='favoritos', lazy=True)
 
     def __init__(self, email, password):
         self.email = email
