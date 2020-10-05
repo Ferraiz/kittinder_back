@@ -12,5 +12,5 @@ def put_kitty(kitty_data, user_id, kitty_id):
     kitty.name = kitty_data['name']
     kitty.photo = kitty_data['photo']
     kitty.save()
-    response = build_response({'name': f'{kitty.name}'})
+    response = build_response({'name': kitty.name})
     return response

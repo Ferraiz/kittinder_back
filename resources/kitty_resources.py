@@ -31,7 +31,9 @@ class PostKitty(Resource):
 class GetKitties(Resource):
     @jwt_required
     def get(self, user_id):
-        response = get_kitties(user_id)
+        limit = request.args.get('limit', type=int)
+        page = request.args.get('page', type=int)
+        response = get_kitties(user_id, limit, page)
         return response
 
 

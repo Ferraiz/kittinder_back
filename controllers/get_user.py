@@ -7,5 +7,5 @@ def get_user(user_email):
     if not user:
         response = build_response({'error message': 'User not found'}, 404)
         return response
-    response = build_response({'mail': f'{user.email}'})
+    response = build_response({'mail': user.email})
     return response

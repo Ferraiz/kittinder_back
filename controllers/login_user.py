@@ -16,7 +16,7 @@ def login_user(user_data):
     if user and safe_str_cmp(user.password, user_data['password']):
         access_token = create_access_token(
             identity=user.email, expires_delta=expires)
-        response = build_response({'token': f'{access_token}'})
+        response = build_response({'token': access_token})
         return response
     response = build_response({'error message': 'Invalid credentials'}, 403)
     return response
