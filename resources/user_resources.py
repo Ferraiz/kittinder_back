@@ -27,20 +27,30 @@ class CreateUser(Resource):
 class UpdateUser(Resource):
     @jwt_required
     def put(self, user_id):
-        json_data = request.get_json()
-        try:
-            data = user_schema.load(json_data)
-        except:
-            return build_response({'error message': 'Bad request'}, 400)
-        response = put_user(data, user_id)
-        return response
+        if get_jwt_identity() == user_id:
+            json_data = request.get_json()
+            try:
+                data = user_schema.load(json_data)
+            except:
+                return build_response({'error message': 'Bad request'}, 400)
+            response = put_user(data, user_id)
+            return response
+        else:
+            response = build_response(
+                {'error message': 'Invalid credentials'}, 403)
+            return response
 
 
 class GetUser(Resource):
     @jwt_required
     def get(self, user_email):
-        response = get_user(user_email)
-        return response
+        if get_jwt_identity() == user_id:
+            response = get_user(user_email)
+            return response
+        else:
+            response = build_response(
+                {'error message': 'Invalid credentials'}, 403)
+            return response
 
 
 class UserLogin(Resource):
