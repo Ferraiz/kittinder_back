@@ -7,6 +7,6 @@ from schemas.validators import must_not_be_blank
 class KittySchema(Schema):
     id = fields.Int(dump_only=True)
     name = fields.Str(
-        required=True, validate=must_not_be_blank)
-    photo = fields.Str(required=True, validate=must_not_be_blank)
+        required=True)
+    photo = fields.Str(required=True)
     # user_id = fields.Nested(UserSchema)

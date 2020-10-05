@@ -12,11 +12,16 @@ def post_fav(fav_data, user_id):
         source = 'photo'
         favourite = FavouritesModel(
             kitty_name=fav_name, user_id=user_id, photo=fav_image)
-    if fav_data['url']:
+        favourite.save()
+    elif fav_data['url']:
         fav_image = fav_data['url']
         source = 'url'
         favourite = FavouritesModel(
             kitty_name=fav_name, user_id=user_id, url=fav_image)
-    favourite.save()
+        favourite.save()
+    else:
+        response = build_response(
+            {'error message': 'inform "url" or "photo"'}, 400)
+        return response
     response = build_response({'name': fav_name, source: fav_image})
     return response
