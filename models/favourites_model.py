@@ -20,3 +20,15 @@ class FavouritesModel(db.Model):
     def save(self):
         db.session.add(self)
         db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    @classmethod
+    def find_by_id(cls, id):
+        return cls.query.filter_by(id=id).first()
+
+    @classmethod
+    def find_by_user(cls, user_id):
+        return cls.query.filter_by(user_id=user_id).all()
