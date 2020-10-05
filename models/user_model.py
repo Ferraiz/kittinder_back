@@ -10,7 +10,7 @@ class UserModel(db.Model):
     kitties = db.relationship(
         'KittyModel', backref='owner', lazy=True)
     favourites = db.relationship(
-        'FavouritesModel', backref='favoritos', lazy=True)
+        'FavouritesModel', backref='favourites', lazy=True)
 
     def __init__(self, email, password):
         self.email = email

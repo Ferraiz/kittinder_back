@@ -1,4 +1,3 @@
-from flask import Response
 from marshmallow import Schema, fields
 
 from schemas.validators import must_not_be_blank

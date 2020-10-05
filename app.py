@@ -10,6 +10,8 @@ from resources.user_resources import (
 from resources.kitty_resources import (
     PostKitty, GetKitties, GetKittyById, GetKitty, UpdateKitty, DeleteKitty)
 
+from resources.favs_resources import PostFavourite
+
 from models.favourites_model import FavouritesModel
 
 app = Flask(__name__)
@@ -21,9 +23,9 @@ app.config['JWT_SECRET_KEY'] = 'marramiau'
 jwt = JWTManager(app)
 
 
-# @app.before_first_request
-# def create_tables():
-#     db.create_all()
+@app.before_first_request
+def create_tables():
+    db.create_all()
 
 
 api.add_resource(Info, '/info')
@@ -37,9 +39,9 @@ api.add_resource(UpdateKitty, '/user/<int:user_id>/kitty/<int:kitty_id>')
 api.add_resource(GetKitties, '/user/<int:user_id>/kitties')
 api.add_resource(DeleteKitty, '/user/<int:user_id>/kitty/<int:kitty_id>')
 api.add_resource(GetKitty, '/kitty')
+api.add_resource(PostFavourite, '/user/<int:user_id>/favourites')
 
 db.init_app(app)
 
 if __name__ == '__main__':
     app.run(debug=True)
-    db.create_all()
