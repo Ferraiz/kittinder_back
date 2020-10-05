@@ -6,13 +6,15 @@ class FavouritesModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     kitty_name = db.Column(db.String(30))
-    image = db.Column(db.String(120))
+    photo = db.Column(db.String(120))
+    url = db.Column(db.String(180))
     user_id = db.Column(db.Integer, db.ForeignKey(
         'users_table.id'), nullable=False)
 
-    def __init__(self, kitty_name, image, user_id):
+    def __init__(self, kitty_name, user_id, photo=None, url=None):
         self.kitty_name = kitty_name
-        self.image = image
+        self.photo = photo
+        self.url = url
         self.user_id = user_id
 
     def save(self):

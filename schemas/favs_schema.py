@@ -7,4 +7,5 @@ class FavsSchema(Schema):
     id = fields.Int(dump_only=True)
     name = fields.Str(
         required=True, validate=must_not_be_blank)
-    image = fields.Str()
+    photo = fields.Str()
+    url = fields.Str()
