@@ -32,3 +32,6 @@ class FavouritesModel(db.Model):
     @classmethod
     def find_by_user(cls, user_id):
         return cls.query.filter_by(user_id=user_id).all()
+
+    def serialize_favourite(self):
+        return {'kitty id': self.id, 'kitty name': self.kitty_name, 'kitty photo': self.photo, 'kitty url': self.url}
