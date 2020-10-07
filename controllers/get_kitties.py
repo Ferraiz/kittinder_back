@@ -1,8 +1,5 @@
 from helpers.build_response import build_response
-from helpers.get_user_kitties import get_user_kitties
-
 from models.kitty_model import KittyModel
-from models.user_model import UserModel
 
 
 def get_kitties(user_id, limit, page):

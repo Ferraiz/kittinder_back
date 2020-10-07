@@ -10,7 +10,7 @@ from resources.user_resources import (
 from resources.kitty_resources import (
     PostKitty, GetKitties, GetKittyById, GetKitty, UpdateKitty, DeleteKitty)
 
-from resources.favs_resources import PostFavourite, DeleteFavourite
+from resources.favs_resources import PostFavourite, DeleteFavourite, GetFavourites
 
 
 app = Flask(__name__)
@@ -41,6 +41,8 @@ api.add_resource(GetKitty, '/kitty')
 api.add_resource(PostFavourite, '/user/<int:user_id>/favourites')
 api.add_resource(
     DeleteFavourite, '/user/<int:user_id>/favourites/<int:fav_id>')
+api.add_resource(
+    GetFavourites, '/user/<int:user_id>/favourites')
 
 
 db.init_app(app)
