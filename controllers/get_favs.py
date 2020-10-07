@@ -17,5 +17,3 @@ def get_favourites(user_id, limit, page):
     response = build_response(
         {'offset': offset, 'limit': limit, 'total': total, 'data': data})
     return response
-
-    pass
