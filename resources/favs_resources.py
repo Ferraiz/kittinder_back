@@ -3,6 +3,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask_restful import Resource
 
 from controllers.post_fav import post_fav
+from controllers.delete_fav import delete_fav
 from helpers.build_response import build_response
 from schemas.favs_schema import FavsSchema
 
@@ -26,3 +27,10 @@ class PostFavourite(Resource):
             response = build_response(
                 {'error message': 'Invalid credentials'}, 403)
             return response
+
+
+class DeleteFavourite(Resource):
+    @jwt_required
+    def delete(self, user_id, fav_id):
+        response = delete_fav(user_id, fav_id)
+        return response

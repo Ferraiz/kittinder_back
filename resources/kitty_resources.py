@@ -86,10 +86,5 @@ class UpdateKitty(Resource):
 class DeleteKitty(Resource):
     @jwt_required
     def delete(self, user_id, kitty_id):
-        if get_jwt_identity() == user_id:
-            response = delete_kitty(user_id, kitty_id)
-            return response
-        else:
-            response = build_response(
-                {'error message': 'Invalid credentials'}, 403)
-            return response
+        response = delete_kitty(user_id, kitty_id)
+        return response
