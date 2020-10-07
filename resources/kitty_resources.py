@@ -23,7 +23,6 @@ class PostKitty(Resource):
         except:
             response = build_response({'error message': 'Bad request'}, 400)
             return response
-        print(data)
         response = post_kitty(data, user_id)
         return response
 
@@ -66,7 +65,5 @@ class UpdateKitty(Resource):
 class DeleteKitty(Resource):
     @jwt_required
     def delete(self, user_id, kitty_id):
-        print(user_id)
-        print(kitty_id)
         response = delete_kitty(user_id, kitty_id)
         return response
